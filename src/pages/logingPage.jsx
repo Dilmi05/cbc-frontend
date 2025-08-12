@@ -8,14 +8,15 @@ export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function LoginPageNew(){
-         axios.post("http://localhost:5000/api/users/login",{
+    function LoginPageNew(e){
+            e.preventDefault();
+        
+        axios.post("http://localhost:5000/api/users/login",{
             email: email,
             password: password
          }).then((res)=>{
 
-            console.log(res);
-
+            console.log("Login button clicked", email, password);
             
              if(res.data.user==null){
                 toast.error(res.data);
