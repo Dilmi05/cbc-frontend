@@ -2,21 +2,25 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import{ Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function AdminProductPage() {
   const [products, setProducts] = useState([]);
-  
+  const[productsLoaded,setProductsLoaded] =useState(false);
+   
   
 
   useEffect(() => {
+    if(!productsLoaded){
     axios.get("http://localhost:5000/api/products")
       .then((res) => {
         setProducts(res.data);
+        setProductsLoaded(true);
       })
-      .catch((err) => {
-        console.error("Error fetching products:", err);
-      });
-  }, []);
+       
+    }
+  }, [productsLoaded]);
+
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 relative">
@@ -26,7 +30,8 @@ export default function AdminProductPage() {
       <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Admin Product Page</h1>
 
       <div className="overflow-x-auto shadow-lg rounded-lg">
-        <button></button>
+         
+
         <table className="min-w-full bg-white border border-gray-300 text-sm text-left">
           <thead className="bg-purple-600 text-white uppercase text-xs tracking-wider">
             <tr>
@@ -50,7 +55,22 @@ export default function AdminProductPage() {
                 <td className="px-6 py-4 border-b">{product.description}</td>
                 <td className="px-6 py-4 border-b">
                   <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-xs">Edit</button>
-                  <button className="bg-red-500 text-white px-3 py-1 rounded ml-2 hover:bg-red-600 text-xs">Delete</button>
+                  <button className="bg-red-500 text-white px-3 py-1 rounded ml-2 hover:bg-red-600 text-xs" onClick={()=>{
+                     const token = localStorage.getItem("token");
+                    axios.delete(`http://localhost:5000/api/products/${product.productID}`,
+
+                       {
+                        headers:{
+                          Authorization:"Bearer ${token}",
+                        },
+
+                      }
+                    ).then((res)=>{
+                      console.log(res.data)
+                      toast.success("product delete successfully")
+                      setProductsLoaded(false);
+                     })
+                  }}>Delete</button>
                 </td>
               </tr>
             ))}
