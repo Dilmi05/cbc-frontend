@@ -28,8 +28,9 @@ export default function AdminProductPage() {
         <Link to={"/admin/products/addProduct"}className="absolute right-[25px] bottom-[25px] text-[25px] bg-[#bd0bbd] p-5 rounded-lg text-white hover:bg-[#FF00FF] border border-[#3b82f6]"><FaPlus></FaPlus></Link>
 
       <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Admin Product Page</h1>
-
-      <div className="overflow-x-auto shadow-lg rounded-lg">
+       <h1>
+        {
+          productsLoaded?<div className="overflow-x-auto shadow-lg rounded-lg">
          
 
         <table className="min-w-full bg-white border border-gray-300 text-sm text-left">
@@ -76,7 +77,14 @@ export default function AdminProductPage() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div>:<div className="flex justify-center mt-8">
+  <div className="w-10 h-10 border-[4px] border-gray-600 border-b-blue-500 animate-spin rounded-full"></div>
+</div>
+        }
+        </h1>
+       
+
+       
     </div>
   );
 }
