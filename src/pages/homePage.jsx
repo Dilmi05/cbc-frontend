@@ -1,20 +1,14 @@
  import { Link } from 'react-router-dom';
+ import Header from '../components/header';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gradient-to-br from-blue-50 to-white text-gray-800">
       
       {/* Header */}
-      <header className="bg-white shadow-md p-6 flex justify-between items-center sticky top-0 z-10">
-        <h1 className="text-3xl font-bold text-blue-600">My Website</h1>
-        <nav className="space-x-6">
-          <a href="/" className="text-gray-700 hover:text-blue-500 transition">Home</a>
-          <a href="/about" className="text-gray-700 hover:text-blue-500 transition">About</a>
-          <a href="/services" className="text-gray-700 hover:text-blue-500 transition">Services</a>
-          <a href="/contact" className="text-gray-700 hover:text-blue-500 transition">Contact</a>
-        </nav>
-      </header>
-
+      <Header/>
+          
+ 
       {/* Hero Section */}
       <section className="flex-grow flex flex-col items-center justify-center text-center px-6 py-20 bg-gradient-to-r from-blue-100 via-white to-blue-100">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-blue-800">

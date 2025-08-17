@@ -1,16 +1,18 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import profilePic from '../assets/logo.jpg';
 
 export default function LoginPage() {
+
+    <Header/>
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleLogin(e) {
     e.preventDefault();
 
-    axios.post("http://localhost:5000/api/users/login", {
+    axios.post(import.meta.env.VITE_BACKEND_URL+"/api/users/login", {
       email,
       password,
     }).then((res) => {
