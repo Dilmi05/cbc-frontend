@@ -2,12 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import uploadMediaToSupabase from "../../utils/mediaUpload";
  
 export default function AddProductForm() {
   const [productID, setProductID] = useState("");
   const [productName, setProductName] = useState("");
   const [alternativeName, setAlternativeName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+   const[imageFiles,setImageFiles]=useState("")
   const [price, setPrice] = useState("");
   const [lastPrice, setLastPrice] = useState("");
   const [stock, setStock] = useState("");
@@ -17,7 +18,19 @@ export default function AddProductForm() {
 
   async function handleSubmit(){
 
+
+
      const altNames = alternativeName.split(",")
+     const promisesArray =[]
+
+     for(let i=0; i<imageFiles.length; i++){
+       promisesArray[i]=uploadMediaToSupabase(imageFiles[i])
+      }
+
+      const imageUrl= await Promise.all(promisesArray)
+      console.log(imageUrl)
+      
+      return
      const imgUrls = imageUrl.split(",")
 
     const product={
@@ -105,11 +118,13 @@ export default function AddProductForm() {
               Product Image URL
             </label>
             <input
-              type="text"
+              type="file"
               placeholder="e.g. https://example.com/images/product.jpg"
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
+               onChange={(e) => {
+                 setImageFiles(e.target.files)
+              }}
+              multiple
             />
           </div>
 
