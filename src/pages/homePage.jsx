@@ -7,6 +7,11 @@ export default function HomePage() {
       
       {/* Header */}
       <Header/>
+
+      <div>
+
+         
+      </div>
           
  
       {/* Hero Section */}

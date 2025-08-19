@@ -3,70 +3,80 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import uploadMediaToSupabase from "../../utils/mediaUpload";
- 
-export default function AddProductForm() {
-  const [productID, setProductID] = useState("");
-  const [productName, setProductName] = useState("");
-  const [alternativeName, setAlternativeName] = useState("");
-   const[imageFiles,setImageFiles]=useState("")
-  const [price, setPrice] = useState("");
-  const [lastPrice, setLastPrice] = useState("");
-  const [stock, setStock] = useState("");
-  const [description, setDescription] = useState("");
+import { useLocation } from "react-router-dom";
+
+export default function EditProduct() {
+  const location = useLocation();
   const navigate =useNavigate()
+  const product =location.state.product
 
-  console.log(location)
+  const altNames = product.altNames.join(",")
 
-  async function handleSubmit(){
-
-
-
-     const altNames = alternativeName.split(",")
-     const promisesArray =[]
-     let imgUrls = product.images
-
-     if(imageFiles.length>0){
-     for(let i=0; i<imageFiles.length; i++){
-       promisesArray[i]=uploadMediaToSupabase(imageFiles[i])
-      }
-
-       imgUrls= await Promise.all(promisesArray)
-     
-      }
-    const product={
-        productID:productID,
-        productName:productName,
-        altNames:altNames,
-        images:imageUrl,
-        price:price,
-        lastPrice:lastPrice,
-        stock:stock,
-        description:description,
-
-
-    }
-
-    const token=localStorage.getItem("token")
-    try{
-    await axios.post("http://localhost:5000/api/products",product,{
-        headers: {
-            Authorization : "Bearer "+token
-        }
-    })
-    navigate("/admin/products")
-    toast.success("Product added successfully")
-    console.log("success");
-  }catch(err){
-  console.log(err)
-  toast.error("Failed to add product")
+  if(product==null){
+     navigate("/admin/products")
 }
+  const [productID, setProductID] = useState(product.productID);
+  const [productName, setProductName] = useState(product.productName);
+  const [alternativeName, setAlternativeName] = useState(altNames);
+   const[imageFiles,setImageFiles]=useState([])
+  const [price, setPrice] = useState(product.price);
+  const [lastPrice, setLastPrice] = useState(product.lastPrice);
+  const [stock, setStock] = useState(product.stock);
+  const [description, setDescription] = useState(product.description);
+  
+  console.log(location);
+
+
+ 
+  async function handleSubmit() {
+  const altNames = alternativeName.split(",");
+  const promisesArray = [];
+
+  // Convert FileList to Array
+  const filesArray = Array.from(imageFiles);
+
+  for (let i = 0; i < filesArray.length; i++) {
+    promisesArray[i] = uploadMediaToSupabase(filesArray[i]);
   }
+
+  const imageUrl = await Promise.all(promisesArray);
+
+  const productData = {
+    productID: productID,
+    productName: productName,
+    altNames: altNames,
+    images: imageUrl,
+    price: price,
+    lastPrice: lastPrice,
+    stock: stock,
+    description: description,
+  };
+
+  const token = localStorage.getItem("token");
+  try {
+    await axios.put(
+      "http://localhost:5000/api/products/" + product.productID,
+      productData,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    navigate("/admin/products");
+    toast.success("Product updated successfully");
+    console.log("success");
+  } catch (err) {
+    console.log(err);
+    toast.error("Failed to update product");
+  }
+}
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-purple-100 p-8 flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-xl p-10 w-full max-w-3xl">
         <h1 className="text-2xl font-bold text-purple-800 mb-8 text-center">
-          ➕ Add New Product
+          ➕ Edit Product
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -76,6 +86,7 @@ export default function AddProductForm() {
               Product ID
             </label>
             <input
+              disabled
               type="text"
               placeholder="e.g. BEAUTY1052"
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
@@ -191,7 +202,7 @@ export default function AddProductForm() {
               className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-lg shadow-md transition duration-200"
               onClick={handleSubmit}
             >
-              Add Product
+              Update Product
             </button>
           </div>
         </div>

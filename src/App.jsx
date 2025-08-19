@@ -4,6 +4,7 @@ import './index.css'
 import HomePage from './pages/homePage'
 import LoginPage from './pages/logingPage'
 import AdminHomePage from './pages/adminHomePage'
+import ProductOverView from './pages/productOverView'
   
  
 
@@ -19,7 +20,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path='/signup' element={<h1>Signup Page</h1>} />
           <Route path="/admin/*" element={<AdminHomePage />} />
- 
+          <Route path="/product-overview" element={<ProductOverView />} />
+
          </Routes>
       </BrowserRouter>
     </div>

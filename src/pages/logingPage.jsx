@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import profilePic from '../assets/logo.jpg';
+ import Header from '../components/header';
 
 export default function LoginPage() {
 
