@@ -1,21 +1,33 @@
 import profilePic from '../assets/logo.jpg';
+ 
+import { Link, Route, Routes } from "react-router-dom";
+import AddProductForm from "../pages/admin/addProductForm";
+import AdminProductPage from "../pages/admin/adminProductPage";
+import EditProduct from "../pages/admin/editProduct";
+
 
 export default function Header(){
     return(
-    <header className="bg-white flex justify-center items-center  top-0 z-10 h-[100px] w-full relative">
-    
-    <img
-              src={profilePic}
-              alt="Profile"
-              className="w-24 h-24 rounded-full mb-4 border-4 border-blue-300 cursor-pointer absolute left-[10px]"
-            />
+    <div className="bg-gradient-to-br from-blue-100 to-white w-full min-h-screen flex flex-col items-center justify-start py-10 px-4">
+      
+      {/* Navigation */}
+      <nav className="mb-8 flex space-x-6 text-blue-700 font-medium bg-white shadow-md px-6 py-3 rounded-md">
+        <Link to="dashboard" className="hover:text-blue-900 transition">Dashboard</Link>
+        <Link to="products" className="hover:text-blue-900 transition">Products</Link>
+        <Link to="orders" className="hover:text-blue-900 transition">Orders</Link>
+        <Link to="users" className="hover:text-blue-900 transition">Users</Link>
+      </nav>
 
-       <nav className="space-x-6 text-lg ">
-          <a href="/" className="text-gray-700 hover:text-blue-500 transition">Home</a>
-          <a href="/products" className="text-gray-700 hover:text-blue-500 transition">Products</a>
-          <a href="/about" className="text-gray-700 hover:text-blue-500 transition">About Us</a>
-          <a href="/contact" className="text-gray-700 hover:text-blue-500 transition">Contact Us</a>
-        </nav>     
-     </header>
-    )
+      {/* Page Routes */}
+      <Routes>
+        <Route path="dashboard" element={<h1 className="text-2xl font-bold text-blue-700">Dashboard</h1>} />
+        <Route path="products" element={<AdminProductPage />} />
+        <Route path="products/addproduct" element={<AddProductForm />} />
+        <Route path="products/editproduct" element={<EditProduct/>} />
+        <Route path="orders" element={<h1 className="text-2xl font-bold text-blue-700">Orders</h1>} />
+        <Route path="users" element={<h1 className="text-2xl font-bold text-blue-700">Users</h1>} />
+        <Route path="/*" element={<h1 className="text-xl font-semibold text-red-600">Page Not Found</h1>} />
+      </Routes>
+    </div>
+  );
 }

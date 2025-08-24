@@ -20,8 +20,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path='/signup' element={<h1>Signup Page</h1>} />
           <Route path="/admin/*" element={<AdminHomePage />} />
-          <Route path="/product-overview" element={<ProductOverView />} />
-
+          <Route path="/product-overview/:id/*" element={<ProductOverView />} />
          </Routes>
       </BrowserRouter>
     </div>
