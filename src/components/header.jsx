@@ -4,6 +4,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import AddProductForm from "../pages/admin/addProductForm";
 import AdminProductPage from "../pages/admin/adminProductPage";
 import EditProduct from "../pages/admin/editProduct";
+import ProductPage from '../pages/product'
 
 
 export default function Header(){

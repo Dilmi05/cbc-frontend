@@ -5,13 +5,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gradient-to-br from-blue-50 to-white text-gray-800">
       
-      {/* Header */}
-      <Header/>
-
-      <div>
-
-         
-      </div>
+     
           
  
       {/* Hero Section */}

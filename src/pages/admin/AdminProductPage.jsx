@@ -53,6 +53,7 @@ export default function AdminProductPage() {
                 </thead>
                 <tbody className="text-gray-700">
                   {products.map((product, index) => (
+                    
                     <tr key={index} className="hover:bg-gray-50 transition-all duration-200">
                       <td className="px-6 py-4 border-b">{product.productID}</td>
                       <td className="px-6 py-4 border-b">{product.productName}</td>
