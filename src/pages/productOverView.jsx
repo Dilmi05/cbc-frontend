@@ -4,6 +4,8 @@ import ProductNotFound from "./home/productNotFound";
  import { useParams, Routes, Route } from "react-router-dom";
 import Header from "../components/header"; 
 import ImageSlider from "../components/imageSlider";
+import { addToCart } from "../utils/cartFunction";
+import toast from "react-hot-toast";  
  
  
 
@@ -24,7 +26,13 @@ export default function ProductOverView() {
           setStatus("found");
         }
       });
-  }, [productId]);
+  }, []);
+
+  function onAddtoCartClick(){
+    addToCart(product.productId,1)
+    toast.success(product.productId+"Added to cart")
+  }
+
 
   return (
 
@@ -63,6 +71,7 @@ export default function ProductOverView() {
 <p className="text-lg text-gray-600 line-clamp-3">
   {product.description}
 </p>
+<button onClick={ onAddtoCartClick} className="bg-amber-500 text-white p-2 rounded-lg">Add to cart</button>
 
           </div>
         </div>

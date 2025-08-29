@@ -27,6 +27,7 @@ export default function ProductCard(props) {
 
         
         <h1 className="text-3xl font-bold text-center">{props.product.productName}</h1>
+        <h2 className="text-lg text-gray-500 text-center">{props.product.productId}</h2>
         <p className="text-left text-xl font-semibold ">LKR.{props.product.lastPrice.toFixed(2)}</p>
         {
            ( props.product.lastPrice < props.product.price)&&
