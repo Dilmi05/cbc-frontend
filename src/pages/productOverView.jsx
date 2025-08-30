@@ -46,8 +46,9 @@ export default function ProductOverView() {
         <div className="w-full h-full flex items-center justify-center">
           <div className="w-[35%] h-full">
                 {Array.isArray(product.images) && product.images.length > 0 && (
-  <ImageSlider></ImageSlider>
-)}
+ <ImageSlider images={product.images} />
+
+ )}
 
             
           </div>
@@ -71,6 +72,7 @@ export default function ProductOverView() {
 <p className="text-lg text-gray-600 line-clamp-3">
   {product.description}
 </p>
+
 <button onClick={ onAddtoCartClick} className="bg-amber-500 text-white p-2 rounded-lg">Add to cart</button>
 
           </div>

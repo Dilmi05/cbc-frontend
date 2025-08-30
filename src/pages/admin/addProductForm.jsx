@@ -17,34 +17,32 @@ export default function AddProductForm() {
 
   console.log(location)
 
-  async function handleSubmit(){
+   async function handleSubmit() {
+  const altNames = alternativeName.split(",");
+  const promisesArray = [];
+  let imgUrls = []; // Initialize imgUrls as empty array
 
-
-
-     const altNames = alternativeName.split(",")
-     const promisesArray =[]
-     let imgUrls = product.images
-
-     if(imageFiles.length>0){
-     for(let i=0; i<imageFiles.length; i++){
-       promisesArray[i]=uploadMediaToSupabase(imageFiles[i])
-      }
-
-       imgUrls= await Promise.all(promisesArray)
-     
-      }
-    const product={
-        productID:productID,
-        productName:productName,
-        altNames:altNames,
-        images:imageUrl,
-        price:price,
-        lastPrice:lastPrice,
-        stock:stock,
-        description:description,
-
-
+  if (imageFiles.length > 0) {
+    for (let i = 0; i < imageFiles.length; i++) {
+      promisesArray[i] = uploadMediaToSupabase(imageFiles[i]);
     }
+    imgUrls = await Promise.all(promisesArray);
+  }
+
+  const product = {
+    productID: productID,
+    productName: productName,
+    altNames: altNames,
+    images: imgUrls,
+    price: price,
+    lastPrice: lastPrice,
+    stock: stock,
+    description: description,
+  };
+
+  //... rest of your code
+
+
 
     const token=localStorage.getItem("token")
     try{
@@ -186,8 +184,8 @@ export default function AddProductForm() {
 
           {/* Submit Button */}
           <div className="md:col-span-2 flex justify-center">
-            <button
-              type="submit"
+              <button
+              type="button"
               className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-lg shadow-md transition duration-200"
               onClick={handleSubmit}
             >
