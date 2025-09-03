@@ -2,9 +2,10 @@
 
 export default function ProductCard(props) {
   console.log(props);
+  
 
   return (
-    <Link to={`/productInfo/${props.product.productId}`}>
+    <Link to={`/product-overview/${props.product.productId}`}>
       <div
         className="
           w-[300px] 

@@ -7,8 +7,8 @@ import LoginPage from './pages/logingPage';
 import AdminHomePage from './pages/adminHomePage';
 import ProductOverView from './pages/productOverView';
 import Cart from './pages/cart';
-import ProductPage from './pages/product'; // ✅ FIXED LINE
-
+import ProductPage from './pages/product';
+ 
 function App() {
   return (
     <div className="bg-amber-300">
@@ -18,8 +18,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<h1>Signup Page</h1>} />
           <Route path="/admin/*" element={<AdminHomePage />} />
-          <Route path="/product-overview/:id/*" element={<ProductOverView />} />
-          <Route path="/product" element={<ProductPage />} /> {/* ✅ FIXED LINE */}
+          <Route path="/product-overview/:id" element={<ProductOverView />} />
+          <Route path="/product" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>

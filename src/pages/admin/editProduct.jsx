@@ -55,13 +55,13 @@ export default function EditProduct() {
   const token = localStorage.getItem("token");
   try {
     await axios.put(
-      "http://localhost:5000/api/products/" + product.productID,
-      productData,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
+      `http://localhost:5000/api/products/${product.productID}`,
+       productData,
+      // {
+      //   headers: {
+      //     Authorization: "Bearer " + token,
+      //   },
+      // }
     );
     navigate("/admin/products");
     toast.success("Product updated successfully");

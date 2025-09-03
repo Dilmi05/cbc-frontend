@@ -1,4 +1,4 @@
- import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { loadCart } from "../utils/cartFunction";
 import CartCard from "../components/cartCard";
 
@@ -9,8 +9,10 @@ export default function Cart() {
     setCart(loadCart());
   }, []);
 
+  // ✅ Define the missing function
   function onoOrderCheckOutClick() {
-    // checkout logic
+    console.log("Checkout clicked!", cart);
+    // Add actual checkout logic here
   }
 
   return (
@@ -40,7 +42,10 @@ export default function Cart() {
         </tbody>
       </table>
 
-      <button className="bg-yellow-500 text-white px-4 py-2 mt-4 rounded" onClick={onoOrderCheckOutClick}>
+      <button
+        className="bg-yellow-500 text-white px-4 py-2 mt-4 rounded"
+        onClick={onoOrderCheckOutClick} // ✅ Now this function exists
+      >
         Checkout
       </button>
     </div>
