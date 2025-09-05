@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import profilePic from '../assets/logo.jpg';
- import Header from '../components/header';
 
 export default function LoginPage() {
 
-    <Header/>
-  const [email, setEmail] = useState('');
+   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleLogin(e) {

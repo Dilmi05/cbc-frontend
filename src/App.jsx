@@ -8,13 +8,20 @@ import AdminHomePage from './pages/adminHomePage';
 import ProductOverView from './pages/productOverView';
 import Cart from './pages/cart';
 import ProductPage from './pages/product';
- 
+  
+
 function App() {
   return (
+
+
+    
     <div className="bg-amber-300">
+      
       <BrowserRouter>
+      
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          
+          <Route path="/" element={<HomePage   />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<h1>Signup Page</h1>} />
           <Route path="/admin/*" element={<AdminHomePage />} />

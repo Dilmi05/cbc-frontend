@@ -1,34 +1,75 @@
-import profilePic from '../assets/logo.jpg';
+import { Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import ProductPage from "../pages/product";
+import ProductOverView from "../pages/productOverView";
+import Cart from "../pages/cart";
  
-import { Link, Route, Routes } from "react-router-dom";
-import AddProductForm from "../pages/admin/addProductForm";
-import AdminProductPage from "../pages/admin/adminProductPage";
-import EditProduct from "../pages/admin/editProduct";
-import ProductPage from '../pages/product'
+
+export default function UserNavbar() {
+  return (
+    // ✅ No full-height wrapper, only header
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50 shadow-md">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+        {/* Logo / Title */}
+         
+
+        {/* Navigation */}
+        <nav className="flex space-x-8 text-blue-700 font-medium">
+          <Link
+            to="/"
+            className="relative group hover:text-blue-900 transition"
+          >
+            Home
+            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+          </Link>
+          <Link
+            to="/product"
+            className="relative group hover:text-blue-900 transition"
+          >
+            product
+            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+          </Link>
+          <Link
+            to="/cart"
+            className="relative group hover:text-blue-900 transition"
+          >
+            Cart
+            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+          </Link>
+          <Link
+            to="/about"
+            className="relative group hover:text-blue-900 transition"
+          >
+            About Us
+            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+          </Link>
+          <Link
+            to="/contact"
+            className="relative group hover:text-blue-900 transition"
+          >
+            Contact Us
+            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+          </Link>
+          <Link
+              to="/product-overview"
+              className="relative group hover:text-blue-900 transition"
+            >productOverView
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+            </Link>
+        </nav>
 
 
-export default function Header(){
-    return(
-    <div className="bg-gradient-to-br from-blue-100 to-white w-full min-h-screen flex flex-col items-center justify-start py-10 px-4">
-      
-      {/* Navigation */}
-      <nav className="mb-8 flex space-x-6 text-blue-700 font-medium bg-white shadow-md px-6 py-3 rounded-md">
-        <Link to="dashboard" className="hover:text-blue-900 transition">Dashboard</Link>
-        <Link to="products" className="hover:text-blue-900 transition">Products</Link>
-        <Link to="orders" className="hover:text-blue-900 transition">Orders</Link>
-        <Link to="users" className="hover:text-blue-900 transition">Users</Link>
-      </nav>
-
-      {/* Page Routes */}
-      <Routes>
-        <Route path="dashboard" element={<h1 className="text-2xl font-bold text-blue-700">Dashboard</h1>} />
-        <Route path="products" element={<AdminProductPage />} />
-        <Route path="products/addproduct" element={<AddProductForm />} />
-        <Route path="products/editproduct" element={<EditProduct/>} />
-        <Route path="orders" element={<h1 className="text-2xl font-bold text-blue-700">Orders</h1>} />
-        <Route path="users" element={<h1 className="text-2xl font-bold text-blue-700">Users</h1>} />
-        <Route path="/*" element={<h1 className="text-xl font-semibold text-red-600">Page Not Found</h1>} />
-      </Routes>
-    </div>
+        
+     <main className="flex-1 max-w-7xl mx-auto w-full px-8 py-10">
+        <Routes>
+           
+          <Route path="/product" element={<ProductPage />} />
+          <Route path="/product-overview/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<Cart />} />           
+        </Routes>
+      </main> 
+       
+      </div>
+    </header>
   );
 }

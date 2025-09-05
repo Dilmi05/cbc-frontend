@@ -1,10 +1,12 @@
- import { Link } from 'react-router-dom';
- import Header from '../components/header';
-
+import { Routes, Route, Link } from "react-router-dom";
+import UserNavbar from '../components/header';
+   
 export default function HomePage() {
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gradient-to-br from-blue-50 to-white text-gray-800">
       
+    <UserNavbar />
      
           
  
@@ -31,6 +33,7 @@ export default function HomePage() {
           Login
         </Link>
       </div>
+     
 
       {/* Footer */}
       <footer className="bg-gray-100 text-center py-4 mt-auto">

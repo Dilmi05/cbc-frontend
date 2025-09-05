@@ -41,7 +41,6 @@ export default function CartCard(props){
           <td><img src ={product?.image[0]} className="w-[90px] h-[90] object-cover"/></td>
             <td>{product?.productName}</td>
             <td>{productId}</td>
-            <td>x</td>
             <td>{qty}</td>
             <td>LKR.{product?.lastPrice.toFixed(2)}</td>
             <td className="text center">{(product?.lastPrice*qty).toFixed(2)}</td>
