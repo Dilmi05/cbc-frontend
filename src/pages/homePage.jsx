@@ -1,44 +1,64 @@
-import { Routes, Route, Link } from "react-router-dom";
-import UserNavbar from '../components/header';
-   
+ import { Link, Routes, Route } from "react-router-dom";
+import ProductPage from "../pages/product";
+import ProductOverView from "../pages/productOverView";
+import Cart from "../pages/cart";
+
 export default function HomePage() {
-
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-gradient-to-br from-blue-50 to-white text-gray-800">
-      
-    <UserNavbar />
-     
-          
- 
-      {/* Hero Section */}
-      <section className="flex-grow flex flex-col items-center justify-center text-center px-6 py-20 bg-gradient-to-r from-blue-100 via-white to-blue-100">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-blue-800">
-          Welcome to Our Website
-        </h2>
-        <p className="max-w-xl text-lg text-gray-700 mb-8">
-          We provide high-quality services to help you grow and succeed.
-          Let’s work together to achieve your goals.
-        </p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition">
-          Get Started
-        </button>
-      </section>
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Navbar fixed at top */}
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-blue-200 to-blue-50 shadow-md">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+          <nav className="flex space-x-8 text-blue-700 font-medium">
+            <Link
+              to="/"
+              className="relative group hover:text-blue-900 transition"
+            >
+              Home
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+            </Link>
+            <Link
+              to="/product"
+              className="relative group hover:text-blue-900 transition"
+            >
+              Product
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+            </Link>
+            <Link
+              to="/contact us"
+              className="relative group hover:text-blue-900 transition"
+            >
+              Contact Us
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+            </Link>
+            <Link
+              to="/aboutus"
+              className="relative group hover:text-blue-900 transition"
+            >
+              About Us
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+            </Link>
+             <Link
+              to="/cart"
+              className="relative group hover:text-blue-900 transition"
+            >
+              cart
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
+            </Link>
+            
+          </nav>
+        </div>
+      </header>
 
-      {/* Login Link */}
-      <div className="text-center my-6">
-        <Link
-          to="/login"
-          className="text-blue-600 hover:underline font-medium text-lg"
-        >
-          Login
-        </Link>
-      </div>
-     
-
-      {/* Footer */}
-      <footer className="bg-gray-100 text-center py-4 mt-auto">
-        &copy; {new Date().getFullYear()} My Website. All rights reserved.
-      </footer>
+      {/* ✅ Page Content */}
+      <main className="flex-1 max-w-7xl mx-auto w-full px-8 py-10">
+        <Routes>
+          <Route path="/product" element={<ProductPage />} />
+          <Route path="/product-overview/:id" element={<ProductOverView />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </main>
     </div>
   );
 }
+ 

@@ -1,39 +1,41 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import profilePic from '../assets/logo.jpg';
+import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import profilePic from "../assets/logo.jpg";
 
 export default function LoginPage() {
-
-   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function handleLogin(e) {
     e.preventDefault();
 
-    axios.post(import.meta.env.VITE_BACKEND_URL+"/api/users/login", {
-      email,
-      password,
-    }).then((res) => {
-      console.log("Login button clicked", email, password);
+    axios
+      .post(import.meta.env.VITE_BACKEND_URL + "/api/users/login", {
+        email,
+        password,
+      })
+      .then((res) => {
+        console.log("Login button clicked", email, password);
 
-      if (res.data.user == null) {
-        toast.error(res.data);
-        return;
-      }
+        if (!res.data.user) { // Check if user is null or undefined
+          toast.error(res.data.message || "Login failed. Please try again.");
+          return;
+        }
 
-      toast.success("Login successful");
-      localStorage.setItem("token", res.data.token);
+        toast.success("Login successful");
+        localStorage.setItem("token", res.data.token);
 
-      if (res.data.user.type === "admin") {
-        window.location.href = "/admin";
-      } else {
-        window.location.href = "/";
-      }
-    }).catch((err) => {
-      toast.error("Login failed");
-      console.error(err);
-    });
+        if (res.data.user.type === "admin") {
+          window.location.href = "/admin";
+        } else {
+          window.location.href = "/";
+        }
+      })
+      .catch((err) => {
+        toast.error("An error occurred. Please try again.");
+        console.error(err);
+      });
   }
 
   return (

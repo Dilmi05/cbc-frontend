@@ -21,13 +21,15 @@ function App() {
       
         <Routes>
           
-          <Route path="/" element={<HomePage   />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage/>} />
+          <Route path="/login" element={<HomePage/>} />
           <Route path="/signup" element={<h1>Signup Page</h1>} />
           <Route path="/admin/*" element={<AdminHomePage />} />
           <Route path="/product-overview/:id" element={<ProductOverView />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/products/:id" element={<ProductOverView />} />
+
         </Routes>
       </BrowserRouter>
     </div>
