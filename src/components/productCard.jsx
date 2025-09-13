@@ -6,7 +6,7 @@ export default function ProductCard(props) {
 
   return (
     <Link to={`/product-overview/${props.product.productId}`}>
-      <div
+       <div
         className="
           w-[300px] 
           h-[400px] 

@@ -28,8 +28,7 @@ function App() {
           <Route path="/product-overview/:id" element={<ProductOverView />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/products/:id" element={<ProductOverView />} />
-
+ 
         </Routes>
       </BrowserRouter>
     </div>

@@ -54,8 +54,7 @@ export default function HomePage() {
       <main className="flex-1 max-w-7xl mx-auto w-full px-8 py-10">
         <Routes>
           <Route path="/product" element={<ProductPage />} />
-          <Route path="/product-overview/:id" element={<ProductOverView />} />
-          <Route path="/cart" element={<Cart />} />
+           <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
     </div>
